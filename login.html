@@ -1,25 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Login | MediBook</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
-  <div class="centered-card">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <input type="text" id="loginUsername" placeholder="Username" required>
-      <input type="password" id="loginPassword" placeholder="Password" required>
-      <button type="submit" class="btn-primary">Login</button>
-    </form>
-    <p id="loginMsg"></p>
-    <p class="form-link">Don't have an account? <a href="register.html">Register here</a></p>
-  </div>
-  <script src="login.js"></script>
-</body>
 
+  <div class="auth-container">
+    <div class="auth-brand">
+      <a href="index.html" class="logo" style="color: white; margin-bottom: 2rem; position: absolute; top: 2rem; left: 2rem;">
+        <i class="fas fa-heartbeat"></i> MediBook
+      </a>
+      <h1>Welcome back.</h1>
+      <p>Log in to manage your appointments and medical records.</p>
+      
+      <div class="auth-features">
+        <div class="auth-feature">
+          <i class="fas fa-shield-alt"></i> Secure access to your health data
+        </div>
+        <div class="auth-feature">
+          <i class="fas fa-clock"></i> 24/7 appointment booking
+        </div>
+      </div>
+    </div>
+    
+    <div class="auth-form-wrapper">
+      <div class="auth-form-header">
+        <h2>Sign In</h2>
+        <p>Enter your credentials to continue</p>
+      </div>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername">Username</label>
+          <input type="text" id="loginUsername" placeholder="e.g., admin1" required>
+        </div>
+        
+        <div class="form-group" style="position: relative;">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required>
+          <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 1rem; top: 2.3rem; cursor: pointer; color: var(--text-muted);"></i>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </form>
+      
+      <div class="auth-footer">
+        Don't have an account? <a href="register.html">Register here</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/login.js"></script>
+  <script>
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      var pwd = document.getElementById('loginPassword');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        this.classList.remove('fa-eye');
+        this.classList.add('fa-eye-slash');
+      } else {
+        pwd.type = 'password';
+        this.classList.remove('fa-eye-slash');
+        this.classList.add('fa-eye');
+      }
+    });
+  </script>
+</body>
 </html>

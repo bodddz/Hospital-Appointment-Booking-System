@@ -1,41 +1,70 @@
-<!-- index.html (Home Page) -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hospital Appointment Booking</title>
-  <link rel="stylesheet" href="style.css">
+  <title>MediBook Pro | Modern Healthcare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
-  <header>
-    <h1>Welcome to Our Hospital</h1>
+
+  <header class="landing-header">
+    <div class="logo">
+      <i class="fas fa-heartbeat"></i>
+      MediBook <span style="color:var(--text-main);">Pro</span>
+    </div>
+    <nav class="landing-nav">
+      <a href="login.html" class="btn btn-secondary">Log In</a>
+      <a href="register.html" class="btn btn-primary">Sign Up</a>
+      <button class="icon-btn theme-toggle" title="Toggle Theme" style="margin-left:1rem;"><i class="fas fa-moon"></i></button>
+    </nav>
   </header>
+
   <main>
-    <!-- Hero Section Start -->
-    <div class="hero-section">
-      <div class="hero-content">
-        <h1>Book Your Doctor Appointment Online.</h1>
-        <p class="hero-subtitle">
-          A Healthier Tomorrow Starts Today: Schedule Your Appointment!<br>
-          Your Wellness, Our Expertise: Set Up Your Appointment Today.
-        </p>
-        <div class="hero-buttons">
-          <a href="login.html" class="btn-primary hero-btn">Login</a>
-          <a href="register.html" class="btn-outline hero-btn">Register</a>
+    <section class="hero">
+      <h1>The Modern Standard<br>for Healthcare.</h1>
+      <p>Streamline your hospital’s operations with an intelligent, asynchronous, and beautifully designed appointment platform.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+        <a href="register.html" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Get Started Free</a>
+        <a href="#features" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem;">View Features</a>
+      </div>
+    </section>
+
+    <section id="features" class="features" style="padding: 5rem 5%; background: var(--bg-surface);">
+      <div style="text-align:center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Everything you need.</h2>
+        <p style="color:var(--text-muted); font-size: 1.1rem;">Enterprise-grade features packed into a consumer-grade experience.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="card" style="text-align: center; margin-bottom: 0;">
+          <div class="stat-icon blue" style="margin: 0 auto 1.5rem auto; width: 64px; height: 64px; font-size: 2rem;"><i class="fas fa-calendar-check"></i></div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; color:var(--text-main); text-transform:none;">Smart Scheduling</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Asynchronous conflict resolution prevents double booking.</p>
+        </div>
+        <div class="card" style="text-align: center; margin-bottom: 0;">
+          <div class="stat-icon green" style="margin: 0 auto 1.5rem auto; width: 64px; height: 64px; font-size: 2rem;"><i class="fas fa-chart-pie"></i></div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; color:var(--text-main); text-transform:none;">Live Analytics</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Beautiful, interactive charts to monitor hospital performance.</p>
+        </div>
+        <div class="card" style="text-align: center; margin-bottom: 0;">
+          <div class="stat-icon amber" style="margin: 0 auto 1.5rem auto; width: 64px; height: 64px; font-size: 2rem;"><i class="fas fa-file-csv"></i></div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; color:var(--text-main); text-transform:none;">Data Export</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Download rich CSV reports directly from your dashboard.</p>
+        </div>
+        <div class="card" style="text-align: center; margin-bottom: 0;">
+          <div class="stat-icon red" style="margin: 0 auto 1.5rem auto; width: 64px; height: 64px; font-size: 2rem;"><i class="fas fa-bell"></i></div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.25rem; color:var(--text-main); text-transform:none;">Real-time Notifications</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Get alerted instantly when your appointments are confirmed.</p>
         </div>
       </div>
-      <div class="hero-image-container">
-        <img src="doctor.png" alt="Doctor" class="hero-image">
-      </div>
-    </div>
-
+    </section>
   </main>
-  <footer>
 
+  <footer style="padding: 3rem 5%; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted);">
+    <p>&copy; 2026 MediBook Pro. All rights reserved.</p>
   </footer>
-</body>
 
+  <script src="assets/js/utils.js"></script>
+</body>
 </html>

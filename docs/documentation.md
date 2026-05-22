@@ -140,15 +140,15 @@ The Hospital Website is a web-based application designed to streamline the appoi
 
 function checkAuth() {
 
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const user = JSON.parse(localStorage.getItem('loggedInUser')); // correct key
 
-    if (!user) {
+    if (!user) {
 
-        window.location.href = 'login.html';
+        window.location.href = 'login.html';
 
-    }
+    }
 
-    return user;
+    return user;
 
 }
 
@@ -212,39 +212,35 @@ function checkAuth() {
 
 ```
 
-hospital-website/
+hospital-appointment-system/    ← root (all files are flat)
 
-├── index.html
+├── index.html                  ← Home / landing page
 
-├── login.html
+├── login.html                  ← Login page
 
-├── register.html
+├── register.html               ← Registration page
 
-├── patient.html
+├── patient.html                ← Patient dashboard
 
-├── doctor.html
+├── doctor.html                 ← Doctor dashboard
 
-├── admin.html
+├── admin.html                  ← Admin dashboard
 
-├── css/
+├── style.css                   ← Global stylesheet
 
-│   ├── style.css
+├── utils.js                    ← Shared utilities (auth, storage, toast, hash)
 
-│   └── responsive.css
+├── login.js                    ← Login logic
 
-├── js/
+├── register.js                 ← Registration logic
 
-│   ├── auth.js
+├── patient.js                  ← Patient dashboard logic
 
-│   ├── patient.js
+├── doctor.js                   ← Doctor dashboard logic
 
-│   ├── doctor.js
+├── admin.js                    ← Admin dashboard logic
 
-│   └── admin.js
-
-└── assets/
-
-    └── images/
+└── doctor.png                  ← Hero image
 
 ```
 

@@ -1,324 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Dashboard</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #f0f2f5;
-            min-height: 100vh;
-        }
-
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .dashboard-container {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            min-height: calc(100vh - 64px);
-        }
-
-        .sidebar {
-            background: white;
-            padding: 1.5rem;
-            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-item {
-            padding: 1rem;
-            margin: 0.5rem 0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-item:hover {
-            background: #e3f2fd;
-            color: #2c3e50;
-        }
-
-        .nav-item.active {
-            background: #2c3e50;
-            color: white;
-        }
-
-        .main-content {
-            padding: 2rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
-        }
-
-        .appointment-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1rem;
-            border-left: 4px solid #2c3e50;
-        }
-
-        .patient-info {
-            margin-top: 0.5rem;
-            padding-top: 0.5rem;
-            border-top: 1px solid #dee2e6;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .status-pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .status-confirmed {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .status-cancelled {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        button {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-
-        .btn-primary {
-            background: #2c3e50;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #34495e;
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background: #c82333;
-        }
-
-        .medical-record {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .prescription-form {
-            display: grid;
-            gap: 1rem;
-            max-width: 600px;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin: 0.5rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .dashboard-container {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .main-content {
-                padding: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Dashboard | MediBook</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
-    <header>
-        <h1>Doctor Dashboard</h1>
-        <button onclick="logout()" class="btn-primary">Logout</button>
-    </header>
 
-    <div class="dashboard-container">
-        <div class="sidebar">
-            <div class="nav-item active" onclick="showSection('schedule')">
-                Today's Schedule
+  <div class="dashboard-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fas fa-heartbeat"></i> MediBook
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-item active" onclick="showSection('schedule', event)">
+          <i class="fas fa-calendar-day"></i> Today's Schedule
+        </div>
+        <div class="nav-item" onclick="showSection('patients', event)">
+          <i class="fas fa-users"></i> Patient Records
+        </div>
+        <div class="nav-item" onclick="showSection('prescriptions', event)">
+          <i class="fas fa-prescription-bottle-alt"></i> Prescriptions
+        </div>
+        <div class="nav-item" onclick="showSection('profile', event)">
+          <i class="fas fa-user-md"></i> Profile
+        </div>
+      </nav>
+      
+      <div style="padding: 1.5rem;">
+        <button onclick="logout()" class="btn btn-secondary" style="width: 100%; color: white; border-color: rgba(255,255,255,0.2);">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+          <h2 style="margin:0; font-size:1.25rem;">Doctor Dashboard</h2>
+        </div>
+        <div class="header-right">
+          <button class="icon-btn theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+          
+          <div class="notif-container" id="notifDropdownContainer">
+            <button class="icon-btn" id="notifBtn" onclick="toggleNotificationDropdown()" title="Notifications">
+              <i class="fas fa-bell"></i>
+            </button>
+            <div class="notif-dropdown" id="notifDropdown"></div>
+          </div>
+          
+          <button onclick="logout()" class="icon-btn" style="color: var(--danger);" title="Logout">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+          
+          <div class="user-profile">
+            <div class="user-info">
+              <span class="user-name">Dr. Name</span>
+              <span class="user-role">Specialization</span>
             </div>
-            <div class="nav-item" onclick="showSection('patients')">
-                Patient Records
+            <div class="avatar">D</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Content -->
+      <div class="content-area">
+        
+        <div id="schedule" class="section active">
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon blue"><i class="fas fa-calendar-check"></i></div>
+              <div class="stat-details">
+                <h3>Today's Appointments</h3>
+                <div class="stat-number" id="todayAppointments">0</div>
+              </div>
             </div>
-            <div class="nav-item" onclick="showSection('prescriptions')">
-                Prescriptions
+            <div class="stat-card">
+              <div class="stat-icon amber"><i class="fas fa-clock"></i></div>
+              <div class="stat-details">
+                <h3>Pending Approval</h3>
+                <div class="stat-number" id="pendingAppointments">0</div>
+              </div>
             </div>
-            <div class="nav-item" onclick="showSection('profile')">
-                Profile
+            <div class="stat-card">
+              <div class="stat-icon green"><i class="fas fa-users"></i></div>
+              <div class="stat-details">
+                <h3>Total Patients</h3>
+                <div class="stat-number" id="totalPatients">0</div>
+              </div>
             </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>Today's Schedule</h2>
+            </div>
+            <div id="todaySchedule" class="list-grid"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>Upcoming Appointments</h2>
+            </div>
+            <div id="upcomingSchedule" class="list-grid"></div>
+          </div>
         </div>
 
-        <div class="main-content">
-            <div id="schedule" class="section">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Today's Appointments</h3>
-                        <div class="stat-number" id="todayAppointments">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Pending Appointments</h3>
-                        <div class="stat-number" id="pendingAppointments">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Total Patients</h3>
-                        <div class="stat-number" id="totalPatients">0</div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Today's Schedule</h2>
-                    <div class="schedule-grid" id="todaySchedule"></div>
-                </div>
-
-                <div class="card">
-                    <h2>Upcoming Appointments</h2>
-                    <div class="schedule-grid" id="upcomingSchedule"></div>
-                </div>
+        <div id="patients" class="section">
+          <div class="card">
+            <div class="card-header">
+              <h2>Patient Directory</h2>
             </div>
-
-            <div id="patients" class="section" style="display: none;">
-                <div class="card">
-                    <h2>Patient Records</h2>
-                    <input type="text" id="patientSearch" placeholder="Search patients..." style="margin-bottom: 1rem;">
-                    <div id="patientList"></div>
-                </div>
+            <div class="search-container">
+              <i class="fas fa-search"></i>
+              <input type="text" id="patientSearch" placeholder="Search patients by name...">
             </div>
-
-            <div id="prescriptions" class="section" style="display: none;">
-                <div class="card">
-                    <h2>New Prescription</h2>
-                    <form id="prescriptionForm" class="prescription-form">
-                        <select id="patientSelect" required>
-                            <option value="">Select Patient</option>
-                        </select>
-                        <input type="text" id="medication" placeholder="Medication Name" required>
-                        <input type="text" id="dosage" placeholder="Dosage" required>
-                        <input type="text" id="duration" placeholder="Duration" required>
-                        <textarea id="instructions" placeholder="Instructions" required></textarea>
-                        <button type="submit" class="btn-primary">Issue Prescription</button>
-                    </form>
-                </div>
-
-                <div class="card">
-                    <h2>Recent Prescriptions</h2>
-                    <div id="recentPrescriptions"></div>
-                </div>
-            </div>
-
-            <div id="profile" class="section" style="display: none;">
-                <div class="card">
-                    <h2>Doctor Profile</h2>
-                    <form id="profileForm" class="prescription-form">
-                        <input type="text" id="fullName" placeholder="Full Name" required>
-                        <input type="email" id="email" placeholder="Email" required>
-                        <input type="tel" id="phone" placeholder="Phone Number" required>
-                        <input type="text" id="specialization" placeholder="Specialization" required>
-                        <textarea id="qualifications" placeholder="Qualifications" required></textarea>
-                        <button type="submit" class="btn-primary">Update Profile</button>
-                    </form>
-                </div>
-            </div>
+            <div id="patientList" class="list-grid"></div>
+          </div>
         </div>
-    </div>
 
-    <script src="doctor.js"></script>
+        <div id="prescriptions" class="section">
+          <div class="card">
+            <div class="card-header">
+              <h2>Issue Prescription</h2>
+            </div>
+            <form id="prescriptionForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Patient</label>
+                  <select id="patientSelect" required>
+                    <option value="">Select Patient</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Medication Name</label>
+                  <input type="text" id="medication" required>
+                </div>
+                <div class="form-group">
+                  <label>Dosage</label>
+                  <input type="text" id="dosage" placeholder="e.g., 500mg" required>
+                </div>
+                <div class="form-group">
+                  <label>Duration</label>
+                  <input type="text" id="duration" placeholder="e.g., 7 days" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Instructions / Notes</label>
+                <textarea id="instructions" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-pills"></i> Issue Prescription</button>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>Recent Prescriptions</h2>
+            </div>
+            <div id="recentPrescriptions" class="list-grid"></div>
+          </div>
+        </div>
+
+        <div id="profile" class="section">
+          <div class="card">
+            <div class="card-header">
+              <h2>Doctor Profile</h2>
+            </div>
+            <form id="profileForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                  <label>Specialization</label>
+                  <input type="text" id="specialization" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Qualifications</label>
+                <textarea id="qualifications" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Update Profile</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/doctor.js"></script>
 </body>
-
 </html>
