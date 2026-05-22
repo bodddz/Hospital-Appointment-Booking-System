@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-hospital-user"></i> Patient Dashboard</h1>
+    <div>
+
+      <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </header>
+
+  <div class="dashboard-container">
+    <div class="sidebar">
+      <div class="nav-item active" onclick="showSection('appointments')">
+        <i class="fas fa-calendar-check"></i> Appointments
+      </div>
+      <div class="nav-item" onclick="showSection('medical-records')">
+        <i class="fas fa-file-medical"></i> Medical Records
+      </div>
+      <div class="nav-item" onclick="showSection('profile')">
+        <i class="fas fa-user-circle"></i> Profile
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div id="appointments" class="section">
+        <div class="card">
+          <h2>Book New Appointment</h2>
+          <form id="appointmentForm" class="appointment-form">
+            <select id="specializationSelect" required>
+              <option value="">Select Specialization</option>
+            </select>
+            <select id="doctorSelect" required>
+              <option value="">Select Doctor</option>
+            </select>
+            <select id="appointmentDate" required>
+              <option value="">Select Date</option>
+            </select>
+            <select id="appointmentTime" required>
+              <option value="">Select Time</option>
+            </select>
+            <textarea id="appointmentNotes" placeholder="Any specific concerns or notes"></textarea>
+            <button type="submit">Book Appointment</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Upcoming Appointments</h2>
+          <ul id="upcomingAppointments" class="appointment-list"></ul>
+        </div>
+
+        <div class="card">
+          <h2>Past Appointments</h2>
+          <ul id="pastAppointments" class="appointment-list"></ul>
+        </div>
+      </div>
+
+      <div id="medical-records" class="section" style="display: none;">
+        <div class="card">
+          <h2>Medical History</h2>
+          <div id="medicalHistory"></div>
+        </div>
+        <div class="card">
+          <h2>Prescriptions</h2>
+          <div id="prescriptions"></div>
+        </div>
+      </div>
+
+      <div id="profile" class="section" style="display: none;">
+        <div class="card">
+          <h2>Personal Information</h2>
+          <form id="profileForm" class="appointment-form">
+            <input type="text" id="fullName" placeholder="Full Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="tel" id="phone" placeholder="Phone Number">
+            <input type="date" id="dob" placeholder="Date of Birth">
+            <textarea id="address" placeholder="Address"></textarea>
+            <button type="submit">Update Profile</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="patient.js"></script>
+</body>
+
+</html>

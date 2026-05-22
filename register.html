@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="centered-card">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" id="regUsername" placeholder="Username" required>
+            <input type="email" id="regEmail" placeholder="Email" required>
+            <input type="password" id="regPassword" placeholder="Password" required>
+            <select id="regRole">
+                <option value="patient">Patient</option>
+                <option value="doctor">Doctor</option>
+            </select>
+            <div id="specContainer" style="display:none;">
+                <input type="text" id="regSpec" placeholder="Specialization">
+            </div>
+            <button type="submit" class="btn-primary">Register</button>
+        </form>
+        <p id="registerMsg"></p>
+        <p class="form-link">Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+    <script src="register.js"></script>
+</body>
+
+</html>
